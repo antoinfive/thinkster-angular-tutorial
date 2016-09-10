@@ -1,0 +1,18 @@
+<h1 class="">NIGGA WE MADE IT</h1>
+<div ng-controller="QuotesController as ctrl">
+     <div ng-repeat="quote in ctrl.quotes | orderBy: 'upvotes' : true">
+      <span class="glyphicon glyphicon-thumps-up" ng-click="ctrl.incrementUpvotes(quote)">+</span>
+      {{ quote.character }}  - {{ quote.content }} - {{ quote.upvotes }}
+    </div> 
+  </span>
+
+ <form ng-submit="ctrl.addCharacter()" style="margin-top:30px;">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Character Name" ng-model="ctrl.character"/> 
+      <div class="form-group">
+         <input type="text" class="form-control" placeholder="Quote" ng-model="ctrl.content"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form> 
+  </div>
+

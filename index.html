@@ -11,39 +11,50 @@
     <script src="app/app.js"></script>
     <script src="app/controllers/MainController.js"></script>
     <script src="app/controllers/QuotesController.js"></script>
-    <script src="app/services/QuoteFactory.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app/services/QuoteFactory.js"></script>
 
   </head>
+
   <body ng-app="archerApp">
     <center>
       <h1 id="title"> Welcome to Archer Quotes</h1>
      </center>
     <div class="row">
       <div class="col-md 12">
-        <ui-view></ui-view>
-   <div ng-controller="QuotesController as ctrl">
-     <div ng-repeat="quote in ctrl.quotes | orderBy: 'upvotes' : true">
-      <span class="glyphicon glyphicon-thumps-up" ng-click="ctrl.incrementUpvotes(quote)">+</span>
-      {{ quote.character }}  - {{ quote.content }} - {{ quote.upvotes }}
-    </div> 
-  </span>
-  <form ng-submit="ctrl.addCharacter()" style="margin-top:30px;">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Character Name" ng-model="ctrl.character"/> 
-      <div class="form-group">
-         <input type="text" class="form-control" placeholder="Quote" ng-model="ctrl.content"/>
+        <div ui-view></div>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form> 
-  </div>
     </div>
-   </div>
- </div>
+   
+ 
+ 
  <script type="text/ng-template" id="/home.html">
   <div class="page-header">
-   <h1 class="title">Archer Quotes</h1> 
+    <h1 class="title">Archer Quotes</h1> 
+    <span>
+      <a href="#/quotes/{{$index}}">Comments</a>
+    </span>
   </div> 
 </script>
+  
+<script type="text/ng-template" id="quotes.html">
+  <div class="page-header">
+    <h3> 
+      <a ng-show="quote.character"> 
+        {{quote.content}}
+      </a> 
+      <span hg-hide="quote.character">
+        {{quote.content}}
+      </span> 
+    </h3> 
+  </div>
 
+  <div ng-repeat="comment in quote.comments | orderBy:'-upvotes' : true">
+    <span class="glyphicon glyphicon-thumps-up" ng-click="incrementUpvotes(comment)"></span> 
+    {{comment.upvotes}} - by {{comment.author}}
+    <span style="font-size:20px; margin-left:10px;">
+      {{comment.body}}
+    </span>
+  </div>
+</script>
 </body>
 </html>

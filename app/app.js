@@ -3,16 +3,14 @@ angular
   .config([
     '$stateProvider',
     '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
-
-      $stateProvider
+   function($stateProvider, $urlRouterProvider ) {
+    
+     $stateProvider
         .state('home', {
           url: '/home',
-          templaterUrl: '/home.html',
+          templaterUrl: 'home.html',
           controller: 'MainController'
-       });
-
-      $stateProvider
+        })
         .state('quotes', {
           url: '/quotes/{id}',
           templaterUrl: '/quotes.html',
